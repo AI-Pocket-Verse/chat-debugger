@@ -172,7 +172,7 @@ export const en: Record<keyof typeof zh, string> = {
   'panel.otherGroup': 'other',
   'panel.dynamicBadge': 'Live',
   'panel.dynamicTip': 'Runtime data (time, memory) regenerated every turn; view only',
-  'panel.modCount': '{n} edits',
+  'panel.modCount': 'Edited {n}×',
 
   'edit.title': 'Edit · {name}',
   'edit.desc': 'Whole-section override · /debug/prompt-override · global, applies from the next turn',

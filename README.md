@@ -13,6 +13,12 @@ English | [简体中文](README-CN.md)
 - **Bring your own backend**: implement a small set of debug endpoints ([protocol](docs/backend-protocol.md)). A dependency-free mock backend is included, so you can try everything in one command.
 - **Bilingual UI**: English and Simplified Chinese, following your browser language by default.
 
+## Demo
+
+A 35-second walkthrough against the bundled mock backend (`pnpm demo`): chat with a streamed reply, open the pipeline trace and the assembled prompt, override a prompt section and see it applied on the next turn, preset the relationship stage, then switch to another model.
+
+![chat-debugger demo](docs/images/demo-en.gif)
+
 ## Contents
 
 - [Features](#features)
