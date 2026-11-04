@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- favicon:透明背景 + 一条蓝色心电图折线(与标题栏左侧图标同款),
+       代表对话链路 trace 的信号。加粗描边 + 尖峰铺满 viewBox,16px 下清晰醒目。 -->
+  <path d="M2 16 H12 L15 20 L18 5 L21 24 L23 16 H30"
+        fill="none" stroke="#3370ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

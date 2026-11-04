@@ -1,0 +1,42 @@
+{
+  "name": "chat-debugger",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Browser console for debugging character-chat backends: watch the streamed reply, the per-turn pipeline trace and the assembled prompt, override prompt sections and switch models at runtime",
+  "keywords": [
+    "llm",
+    "chatbot",
+    "debugger",
+    "prompt-engineering",
+    "pipeline-trace",
+    "sse",
+    "react",
+    "vite"
+  ],
+  "homepage": "https://github.com/AI-Pocket-Verse/chat-debugger#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AI-Pocket-Verse/chat-debugger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AI-Pocket-Verse/chat-debugger/issues"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20.19",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "demo": "node scripts/demo.mjs",
+    "dev": "pnpm --filter @chat-debugger/web dev",
+    "mock": "node mock/server.mjs",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}

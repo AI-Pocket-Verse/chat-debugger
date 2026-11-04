@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+*.tsbuildinfo
+coverage/
+
+# Local environment (keep *.example templates)
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Private notes, scratch files
+.private/
+.tmp/
+
+# Maintainer-only docs and AI tool config (not part of the open-source repo)
+AGENTS.md
+CLAUDE.md
+ROADMAP.md
+goals/
+process/
+.claude/
+.codex/
+.cursor/
+.playwright-mcp/

@@ -1,0 +1,53 @@
+# 占位符:__SERVER_NAME__ 域名,__INSTALL_DIR__ 仓库所在目录。
+# 证书默认用 Let's Encrypt 路径,签发方式见 README「部署」。
+
+# http 只用于签证书,其余一律 301 到 https(保留路径与参数)
+server {
+    listen 80;
+    server_name __SERVER_NAME__;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/html;
+    }
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name __SERVER_NAME__;
+
+    ssl_certificate     /etc/letsencrypt/live/__SERVER_NAME__/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/__SERVER_NAME__/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    # 纯静态前端（构建产物），没有后端进程
+    root __INSTALL_DIR__/web/dist;
+    index index.html;
+
+    # 安全响应头。connect-src 放开 https/http:后端地址由使用者在界面里填写,事先无法列举。
+    # style-src 需要 'unsafe-inline':React 组件用了内联 style 属性。
+    add_header Strict-Transport-Security "max-age=31536000" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https: http:; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'" always;
+
+    # 可选：把被测后端反代到同域名下，避免跨域与 https 页面请求 http 后端（mixed content）。
+    # 启用后，观测台「后端地址」填 https://__SERVER_NAME__/backend
+    # location /backend/ {
+    #     proxy_pass http://127.0.0.1:8680/;
+    #     proxy_http_version 1.1;
+    #     proxy_set_header Host $proxy_host;
+    #     proxy_buffering off;          # /chat 是 SSE 流，不能缓冲
+    #     proxy_read_timeout 300s;
+    # }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    access_log /var/log/nginx/chat-debugger.access.log;
+    error_log  /var/log/nginx/chat-debugger.error.log;
+}
